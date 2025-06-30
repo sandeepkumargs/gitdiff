@@ -1,0 +1,102 @@
+name: Multi-Service Docker Deployment
+
+on:
+  push:
+    branches: [develop]
+
+env:
+  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+  DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      auth_changed: ${{ steps.set.outputs.auth }}
+      org_changed: ${{ steps.set.outputs.org }}
+      mm_changed: ${{ steps.set.outputs.mm }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Detect changed services
+        id: set
+        run: |
+          AUTH=$(git diff --name-only HEAD^ HEAD | grep -q '^services/auth/' && echo true || echo false)
+          ORG=$(git diff --name-only HEAD^ HEAD | grep -q '^services/org/' && echo true || echo false)
+          MM=$(git diff --name-only HEAD^ HEAD | grep -q '^services/mm/' && echo true || echo false)
+
+          echo "auth=$AUTH" >> $GITHUB_OUTPUT
+          echo "org=$ORG" >> $GITHUB_OUTPUT
+          echo "mm=$MM" >> $GITHUB_OUTPUT
+
+  build-and-push-auth:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.auth_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set GIT SHA
+        run: echo "GIT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Build auth image
+        run: |
+          docker build -t sandeepkumar93/sandeep:auth-${GIT_SHA} -f services/auth/Dockerfile .
+
+      - name: Push auth image
+        run: |
+          echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+          docker push sandeepkumar93/sandeep:auth-${GIT_SHA}
+
+  build-and-push-org:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.org_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set GIT SHA
+        run: echo "GIT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Build org image
+        run: |
+          docker build -t sandeepkumar93/sandeep:org-${GIT_SHA} -f services/org/Dockerfile .
+
+      - name: Push org image
+        run: |
+          echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+          docker push sandeepkumar93/sandeep:org-${GIT_SHA}
+
+  build-and-push-mm:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.mm_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set GIT SHA
+        run: echo "GIT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Build mm image
+        run: |
+          docker build -t sandeepkumar93/sandeep:mm-${GIT_SHA} -f services/mm/Dockerfile .
+
+      - name: Push mm image
+        run: |
+          echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+          docker push sandeepkumar93/sandeep:mm-${GIT_SHA}
+

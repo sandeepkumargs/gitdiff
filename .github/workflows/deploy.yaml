@@ -7,6 +7,7 @@ on:
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+  DOCKERHUB_REPOSITORY: ${{ secrets.DOCKERHUB_REPOSITORY }}
 
 jobs:
   detect-changes:
@@ -47,12 +48,13 @@ jobs:
 
       - name: Build auth image
         run: |
-          docker build -t sandeepkumar93/sandeep:auth-${GIT_SHA} -f services/auth/Dockerfile .
+          docker build -t $DOCKERHUB_USERNAME/$DOCKERHUB_REPOSITORY:auth-${GIT_SHA} \
+            -f services/auth/Dockerfile .
 
       - name: Push auth image
         run: |
           echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-          docker push sandeepkumar93/sandeep:auth-${GIT_SHA}
+          docker push $DOCKERHUB_USERNAME/$DOCKERHUB_REPOSITORY:auth-${GIT_SHA}
 
   build-and-push-org:
     needs: detect-changes
@@ -70,12 +72,13 @@ jobs:
 
       - name: Build org image
         run: |
-          docker build -t sandeepkumar93/sandeep:org-${GIT_SHA} -f services/org/Dockerfile .
+          docker build -t $DOCKERHUB_USERNAME/$DOCKERHUB_REPOSITORY:org-${GIT_SHA} \
+            -f services/org/Dockerfile .
 
       - name: Push org image
         run: |
           echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-          docker push sandeepkumar93/sandeep:org-${GIT_SHA}
+          docker push $DOCKERHUB_USERNAME/$DOCKERHUB_REPOSITORY:org-${GIT_SHA}
 
   build-and-push-mm:
     needs: detect-changes
@@ -93,10 +96,11 @@ jobs:
 
       - name: Build mm image
         run: |
-          docker build -t sandeepkumar93/sandeep:mm-${GIT_SHA} -f services/mm/Dockerfile .
+          docker build -t $DOCKERHUB_USERNAME/$DOCKERHUB_REPOSITORY:mm-${GIT_SHA} \
+            -f services/mm/Dockerfile .
 
       - name: Push mm image
         run: |
           echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-          docker push sandeepkumar93/sandeep:mm-${GIT_SHA}
+          docker push $DOCKERHUB_USERNAME/$DOCKERHUB_REPOSITORY:mm-${GIT_SHA}
 

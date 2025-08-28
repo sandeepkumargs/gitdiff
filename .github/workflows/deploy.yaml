@@ -2,7 +2,7 @@ name: Multi-Service Docker Deployment
 
 on:
   push:
-    branches: [fearture]
+    branches: [feature]   # fix typo: was 'fearture'
 
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -13,9 +13,12 @@ jobs:
   detect-changes:
     runs-on: ubuntu-latest
     outputs:
-      auth_changed: ${{ steps.set.outputs.auth }}
       org_changed: ${{ steps.set.outputs.org }}
       mm_changed: ${{ steps.set.outputs.mm }}
+      ac_changed: ${{ steps.set.outputs.ac }}
+      onboard_changed: ${{ steps.set.outputs.onboard }}
+      table_changed: ${{ steps.set.outputs.table }}
+      ts_changed: ${{ steps.set.outputs.ts }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,83 +27,60 @@ jobs:
       - name: Detect changed services
         id: set
         run: |
-          AUTH=$(git diff --name-only HEAD^ HEAD | grep -q '^services/auth/' && echo true || echo false)
           ORG=$(git diff --name-only HEAD^ HEAD | grep -q '^services/org/' && echo true || echo false)
           MM=$(git diff --name-only HEAD^ HEAD | grep -q '^services/mm/' && echo true || echo false)
+          AC=$(git diff --name-only HEAD^ HEAD | grep -q '^services/ac/' && echo true || echo false)
+          ONBOARD=$(git diff --name-only HEAD^ HEAD | grep -q '^services/onboard/' && echo true || echo false)
+          TABLE=$(git diff --name-only HEAD^ HEAD | grep -q '^services/table/' && echo true || echo false)
+          TS=$(git diff --name-only HEAD^ HEAD | grep -q '^services/ts/' && echo true || echo false)
 
           echo "auth=$AUTH" >> $GITHUB_OUTPUT
           echo "org=$ORG" >> $GITHUB_OUTPUT
           echo "mm=$MM" >> $GITHUB_OUTPUT
-
-  build-and-push-auth:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.auth_changed == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
-
-      - name: Set GIT SHA
-        run: echo "GIT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-
-      - uses: docker/setup-buildx-action@v3
-
-      - name: Build auth image
-        run: |
-          docker build -t $DOCKERHUB_USERNAME/$DOCKERHUB_REPOSITORY:auth-${GIT_SHA} \
-            -f services/auth/Dockerfile .
-
-      - name: Push auth image
-        run: |
-          echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-          docker push $DOCKERHUB_USERNAME/$DOCKERHUB_REPOSITORY:auth-${GIT_SHA}
+          echo "ac=$AC" >> $GITHUB_OUTPUT
+          echo "onboard=$ONBOARD" >> $GITHUB_OUTPUT
+          echo "table=$TABLE" >> $GITHUB_OUTPUT
+          echo "ts=$TS" >> $GITHUB_OUTPUT
 
   build-and-push-org:
     needs: detect-changes
     if: needs.detect-changes.outputs.org_changed == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
-
-      - name: Set GIT SHA
-        run: echo "GIT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-
-      - uses: docker/setup-buildx-action@v3
-
-      - name: Build org image
-        run: |
-          docker build -t $DOCKERHUB_USERNAME/$DOCKERHUB_REPOSITORY:org-${GIT_SHA} \
-            -f services/org/Dockerfile .
-
-      - name: Push org image
-        run: |
-          echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-          docker push $DOCKERHUB_USERNAME/$DOCKERHUB_REPOSITORY:org-${GIT_SHA}
+    uses: ./.github/workflows/build-push-template.yaml
+    with:
+      service: org
 
   build-and-push-mm:
     needs: detect-changes
     if: needs.detect-changes.outputs.mm_changed == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
+    uses: ./.github/workflows/build-push-template.yaml
+    with:
+      service: mm
 
-      - name: Set GIT SHA
-        run: echo "GIT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+  build-and-push-ac:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.ac_changed == 'true'
+    uses: ./.github/workflows/build-push-template.yaml
+    with:
+      service: ac
 
-      - uses: docker/setup-buildx-action@v3
+  build-and-push-onboard:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.onboard_changed == 'true'
+    uses: ./.github/workflows/build-push-template.yaml
+    with:
+      service: onboard
 
-      - name: Build mm image
-        run: |
-          docker build -t $DOCKERHUB_USERNAME/$DOCKERHUB_REPOSITORY:mm-${GIT_SHA} \
-            -f services/mm/Dockerfile .
+  build-and-push-table:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.table_changed == 'true'
+    uses: ./.github/workflows/build-push-template.yaml
+    with:
+      service: table
 
-      - name: Push mm image
-        run: |
-          echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-          docker push $DOCKERHUB_USERNAME/$DOCKERHUB_REPOSITORY:mm-${GIT_SHA}
+  build-and-push-ts:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.ts_changed == 'true'
+    uses: ./.github/workflows/build-push-template.yaml
+    with:
+      service: ts
 

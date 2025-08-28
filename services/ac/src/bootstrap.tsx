@@ -11,7 +11,6 @@ import { twMerge } from 'tailwind-merge';
 
 const config: APIOptions = {
     unstyled: true,
-    // ripple: true,
     pt: Tailwind,
     ptOptions: { mergeSections: true, mergeProps: true },
   };

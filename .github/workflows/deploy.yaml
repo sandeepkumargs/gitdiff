@@ -1,19 +1,14 @@
-name: Detect Service Changes
+name: TypeScript CI with ESLint & Prettier
 
 on:
   push:
-    branches: [fearture]   # change to your branch name
+    branches: [fearture]  # change as needed
 
 jobs:
   detect-changes:
     runs-on: ubuntu-latest
     outputs:
-      org_changed: ${{ steps.set.outputs.org }}
-      mm_changed: ${{ steps.set.outputs.mm }}
-      ac_changed: ${{ steps.set.outputs.ac }}
-      onboard_changed: ${{ steps.set.outputs.onboard }}
-      table_changed: ${{ steps.set.outputs.table }}
-      ts_changed: ${{ steps.set.outputs.ts }}
+      matrix: ${{ steps.set.outputs.matrix }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -22,26 +17,75 @@ jobs:
       - name: Detect changed services
         id: set
         run: |
-          ORG=$(git diff --name-only HEAD^ HEAD | grep -q '^services/org/' && echo true || echo false)
-          MM=$(git diff --name-only HEAD^ HEAD | grep -q '^services/mm/' && echo true || echo false)
-          AC=$(git diff --name-only HEAD^ HEAD | grep -q '^services/ac/' && echo true || echo false)
-          ONBOARD=$(git diff --name-only HEAD^ HEAD | grep -q '^services/onboard/' && echo true || echo false)
-          TABLE=$(git diff --name-only HEAD^ HEAD | grep -q '^services/table/' && echo true || echo false)
-          TS=$(git diff --name-only HEAD^ HEAD | grep -q '^services/ts/' && echo true || echo false)
+          SERVICES=("org" "mm" "ac" "onboard" "table" "ts")
+          CHANGED=()
+          for svc in "${SERVICES[@]}"; do
+            if git diff --name-only HEAD^ HEAD | grep -q "^services/${svc}/"; then
+              CHANGED+=("\"$svc\"")
+            fi
+          done
+          MATRIX=$(printf '[%s]' "$(IFS=,; echo "${CHANGED[*]}")")
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
 
-          echo "org=$ORG" >> $GITHUB_OUTPUT
-          echo "mm=$MM" >> $GITHUB_OUTPUT
-          echo "ac=$AC" >> $GITHUB_OUTPUT
-          echo "onboard=$ONBOARD" >> $GITHUB_OUTPUT
-          echo "table=$TABLE" >> $GITHUB_OUTPUT
-          echo "ts=$TS" >> $GITHUB_OUTPUT
+  build-and-test:
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.matrix != '[]' }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: ${{ fromJson(needs.detect-changes.outputs.matrix) }}
 
-      - name: Show results
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        working-directory: services/${{ matrix.service }}
         run: |
-          echo "Org changed: ${{ steps.set.outputs.org }}"
-          echo "MM changed: ${{ steps.set.outputs.mm }}"
-          echo "AC changed: ${{ steps.set.outputs.ac }}"
-          echo "Onboard changed: ${{ steps.set.outputs.onboard }}"
-          echo "Table changed: ${{ steps.set.outputs.table }}"
-          echo "TS changed: ${{ steps.set.outputs.ts }}"
+          npm ci
 
+      - name: Install global ESLint + Prettier
+        run: |
+          npm install -g eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin prettier eslint-config-prettier eslint-plugin-prettier
+
+      - name: Run ESLint
+        working-directory: services/${{ matrix.service }}
+        run: |
+          if [ -f .eslintrc.js ] || [ -f .eslintrc.json ]; then
+            eslint "src/**/*.{ts,tsx}" --max-warnings=0
+          else
+            echo "No ESLint config found for ${{ matrix.service }}"
+          fi
+
+      - name: Run Prettier check
+        working-directory: services/${{ matrix.service }}
+        run: |
+          if [ -f .prettierrc ] || [ -f .prettierrc.json ]; then
+            prettier --check "src/**/*.{ts,tsx,js,jsx,json,md}"
+          else
+            echo "No Prettier config found for ${{ matrix.service }}"
+          fi
+
+      - name: Run tests
+        working-directory: services/${{ matrix.service }}
+        run: |
+          if npm run | grep -q "test"; then
+            npm test
+          else
+            echo "No test script found for ${{ matrix.service }}"
+          fi
+
+      - name: Type-check (tsc)
+        working-directory: services/${{ matrix.service }}
+        run: |
+          if [ -f tsconfig.json ]; then
+            npx tsc --noEmit
+          else
+            echo "No tsconfig.json found for ${{ matrix.service }}"
+          fi

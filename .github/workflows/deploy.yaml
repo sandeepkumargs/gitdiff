@@ -48,7 +48,7 @@ jobs:
       - name: Install dependencies
         working-directory: services/${{ matrix.service }}
         run: |
-          npm ci
+          npm i
 
       - name: Install global ESLint + Prettier
         run: |

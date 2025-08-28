@@ -7,7 +7,7 @@ import "react-tabs/style/react-tabs.css"; // Importing styles for the Tabs
 import { Toast } from "primereact/toast";
 import Joyride from "react-joyride";
 import logo2 from "../../assets/logo2.jpeg"
-// import igs_logo from '../../assets/IGS_LOGO.png';
+/// import igs_logo from '../../assets/IGS_LOGO.png';
 // @ts-ignore
 import { refineUserStory, processAllUserStories, getStory, updateStory, updateUserStory } from "../../services/services.js";
 import { Dialog } from "primereact/dialog";

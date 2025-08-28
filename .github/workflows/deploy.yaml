@@ -2,7 +2,7 @@ name: Multi-Service Docker Deployment
 
 on:
   push:
-    branches: [feature]   # fix typo: was 'fearture'
+    branches: [fearture]   # fix typo: was 'fearture'
 
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}

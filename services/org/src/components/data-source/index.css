@@ -1,0 +1,15 @@
+/* Ensure that the placeholder text color is white */
+.p-dropdown .p-dropdown-label {
+    color: white !important; /* Use !important to override any existing styles */
+}
+
+/* Ensure that the text inside the dropdown options (when selected) is also white */
+.p-dropdown .p-dropdown-item {
+    color: white !important; /* Option text color */
+}
+
+/* Ensure the input background and text color are styled as you want */
+.p-dropdown .p-dropdown-input {
+    background-color: #1a2668 !important; /* Dropdown background */
+    color: white !important; /* Input text color */
+}

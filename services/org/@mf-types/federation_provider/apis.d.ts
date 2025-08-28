@@ -1,0 +1,3 @@
+
+    export type RemoteKeys = 'federation_provider/Ambiguity' | 'federation_provider/AmbiguityTable' | 'federation_provider/AmbiguityChecker' | 'federation_provider/AmbiguityApplication';
+    type PackageType<T> = T extends 'federation_provider/AmbiguityApplication' ? typeof import('federation_provider/AmbiguityApplication') :T extends 'federation_provider/AmbiguityChecker' ? typeof import('federation_provider/AmbiguityChecker') :T extends 'federation_provider/AmbiguityTable' ? typeof import('federation_provider/AmbiguityTable') :T extends 'federation_provider/Ambiguity' ? typeof import('federation_provider/Ambiguity') :any;

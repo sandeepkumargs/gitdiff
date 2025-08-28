@@ -1,0 +1,21 @@
+{
+    "Title_p1" : "Why Quali",
+    "Title_p2" : "zen?",
+    "Sub Title" : "It empowers teams to streamline their workflows by addressing ambiguities, refining user stories, creating project roadmaps, and generating comprehensive test scenarios, ultimately enhancing software quality and efficiency.",
+    "Login Button" : "Get Started For Free",
+    "Feature Card Heading" : "Featured Products",
+    "Feature Card 1 Title" : "Kill Ambiguity",
+    "Feature Card 1 Content" : "Identify and resolve ambiguities in user stories with AI-driven analysis. Automatically generate Acceptance Criteria, Assumptions, and a Refined User Story for improved clarity and precision.",
+    "Feature Card 2 Title" : "Mind Maps",
+    "Feature Card 2 Content" : "Visualize complex ideas with structured mind maps. Explore key system aspects, including Overview, Reliability, Availability, Scalability, Resilience, and System Components, to refine user stories effectively.",
+    "Feature Card 3 Title" : "Test Scenario",
+    "Feature Card 3 Content" : "Automatically generate positive, negative and edge-case test scenarios covering functionality, performance, and security. Ensure robust testing for user stories with minimal manual effort.",
+    "Feature Card Read More Button" : "Read More",
+    "Attribute Card Heading" : "Core Attributes",
+    "Attribute Card 1 Title" : "AI-Powered Precision",
+    "Attribute Card 1 Content" : "Our neural networks trained on 1M+ user stories deliver unmatched requirement clarity and test accuracy",
+    "Attribute Card 2 Title" : "Human+AI Synergy",
+    "Attribute Card 2 Content" : "Enhance - don't replace - your team's expertise with intelligent augmentation at every workflow stage",
+    "Attribute Card 3 Title" : "End-to-End Traceability",
+    "Attribute Card 3 Content" : "Maintain perfect audit trails from initial story to final test execution with our blockchain-backed system"
+}

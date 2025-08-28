@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.p-submenu-list {
+  position: absolute !important;
+  top: 100% !important; /* This ensures the submenu appears below */
+  left: 0 !important;   /* Align it with the parent menu item */
+  width: 100% !important;
+  display: block;
+}
+
+.fullscreen-dialog {
+  position: fixed !important; /* Ensure it doesn't inherit relative positioning */
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-height: 100vh !important; /* Prevents internal scroll issues */
+  overflow: hidden; /* Disables unwanted scrolling inside the dialog */
+}
+
+.input-otp {
+  width: 10rem !important;
+  height: 10rem !important;
+}
+

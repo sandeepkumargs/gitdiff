@@ -1,0 +1,89 @@
+.breadcrumb-no-border .p-breadcrumb {
+    border: none;
+  }
+
+  /* Add this to your CSS file */
+.p-menu {
+  background-color: #ffffff !important; /* Set blue background */
+  border: 1px solid #1E3A8A !important; /* Set border color */
+  color: white !important; /* Set text color */
+}
+
+.p-menuitem-link {
+  background-color: transparent !important; /* Transparent for individual items */
+  color: white !important; /* Text color */
+}
+
+.p-menuitem-link:hover {
+  background-color: #ffffff !important; /* Darker blue for hover */
+  color: white !important; /* Maintain text color */
+}
+
+.p-menuitem-link:disabled {
+  background-color: #ffffff !important; /* Gray for disabled state */
+  color: #ffffff !important; /* Light gray text */
+}
+
+.data-source-menu {
+  background-color: #ffffff !important; /* Set white background */
+  border: 1px solid #1E3A8A !important; /* Set border color */
+  color: #1E3A8A !important; /* Set text color to dark blue */
+
+  /* Higher specificity with nested selectors */
+body .p-menu {
+  background-color: #1E3A8A !important; /* Blue background */
+  border: 1px solid #1E3A8A !important; /* Border color */
+  color: white !important; /* White text */
+}
+
+body .p-menuitem-link {
+  background-color: transparent !important; /* Transparent background */
+  color: white !important; /* White text color */
+}
+
+body .p-menuitem-link:hover {
+  background-color: #ffffff !important; /* Darker blue on hover */
+  color: white !important; /* White text */
+}
+
+body .p-menuitem-link:disabled {
+  background-color: #ffffff !important; /* Gray background for disabled state */
+  color: #9ca3af !important; /* Light gray text */
+}
+
+}
+
+/* custom-fileupload.css */
+
+/* Style for FileUpload buttons */
+.p-fileupload-button, /* Browse Button */
+.p-fileupload-upload-button, /* Upload Button */
+.p-fileupload-cancel-button { /* Cancel Button */
+  background-color: #1E3A8A !important; /* Indigo 800 */
+  color: white !important;
+  border-color: #1E3A8A !important;
+}
+
+/* Hover effect */
+.p-fileupload-button:hover,
+.p-fileupload-upload-button:hover,
+.p-fileupload-cancel-button:hover {
+  background-color: #4F73A1 !important; /* Lighter shade of Indigo */
+  border-color: #4F73A1 !important;
+}
+
+/* Focus effect */
+.p-fileupload-button:focus,
+.p-fileupload-upload-button:focus,
+.p-fileupload-cancel-button:focus {
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.5) !important; /* Indigo 800 focus ring */
+}
+
+
+.p-button {
+  background-color: rgb(186 0 0) !important;
+}
+
+.button {
+  background-color: rgb(186 0 0) !important;;
+}

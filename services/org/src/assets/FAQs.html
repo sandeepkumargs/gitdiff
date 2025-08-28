@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailwind CSS Example</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Background image for the entire body with 90% transparency */
+      body {
+          background-image: url('img1.jpg'); /* Path to img1 */
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-color: rgba(0, 0, 0, 0.01); /* Dark overlay with transparency */
+          background-blend-mode: overlay;
+      }
+  </style>
+</head>
+
+<body class="font-sans text-[#3A3A3A] bg-[#F7F9FB]">
+
+  <!-- Main Container -->
+  <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 main-container">
+      <div class="max-w-xl sm:mx-auto lg:max-w-2xl">
+
+      <h2 class="text-4xl sm:text-5xl font-serif font-extrabold leading-tight text-[#344055] mb-6">
+        <span class="relative inline-block">
+          <!-- <svg viewBox="0 0 52 24" fill="currentColor" class="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block">
+            <defs>
+              <pattern id="70326c9b-4a0f-429b-9c76-792941e326d5" x="0" y="0" width=".135" height=".30">
+                <circle cx="1" cy="1" r=".7"></circle>
+              </pattern>
+            </defs>
+            <rect fill="url(#70326c9b-4a0f-429b-9c76-792941e326d5)" width="52" height="24"></rect>
+          </svg> -->
+          <span class="relative text-[#E27243]">Overview Of Qualizen</span>
+        </span>
+    
+      </h2>
+      <p class="text-lg md:text-xl leading-relaxed text-[#4E5A63] max-w-3xl mx-auto mb-10">
+        Qualizen is a robust suite of micro-applications designed to streamline your project management and enhance your workflow. This guide provides step-by-step instructions on how to utilize key features and tools within Qualizen.
+      </p>
+    </div>
+
+    <!-- Main FAQ Content -->
+    <div class="space-y-12">
+
+      <!-- Section: How to Create an Organization and Invite Users -->
+      <div class="bg-white p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
+        <h3 class="text-2xl font-bold text-[#E27243] mb-6 tracking-wide">How to Create an Organization and Invite Users</h3>
+        <p class="text-lg text-[#4E5A63] mb-6 leading-relaxed">
+          To get started with Qualizen, follow these simple steps:
+        </p>
+        <ul class="list-decimal pl-6 space-y-6 text-[#4E5A63] text-lg">
+          <li>
+            <strong class="text-[#E27243]">Register Your Organization</strong> – Provide the necessary details to set up your organization.
+          </li>
+          <li>
+            <strong class="text-[#E27243]">Create a Portfolio</strong> – Portfolios are high-level categories that help organize your projects.
+          </li>
+          <li>
+            <strong class="text-[#E27243]">Create a Project</strong> – Within a portfolio, create projects to manage specific tasks and goals.
+          </li>
+          <li>
+            <strong class="text-[#E27243]">Invite Users</strong> – Navigate to the project dashboard and invite users with one of the following roles:
+            <ul class="list-inside list-disc pl-6 mt-4 space-y-3">
+              <li><strong class="font-medium">Portfolio Admin:</strong> Access to all projects within the portfolio.</li>
+              <li><strong class="font-medium">Project Admin:</strong> Access to a specific project with permissions to add user stories.</li>
+              <li><strong class="font-medium">Read-Only User:</strong> View-only access to user stories.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      
+
+      <!-- Section: How to Import or Add User Stories -->
+      <div class="bg-white p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
+        <h3 class="text-2xl font-bold text-[#E27243] mb-6 tracking-wide">How to Import or Add User Stories</h3>
+        <ul class="list-decimal pl-6 space-y-6 text-[#4E5A63] text-lg">
+          <li>
+            <strong class="text-[#E27243]">Import User Stories</strong> – Import stories directly from an Excel file or integrate with Jira by providing:
+            <ul class="list-inside list-disc pl-6 mt-4 space-y-3">
+              <li><strong class="font-medium">Jira URL</strong></li>
+              <li><strong class="font-medium">Access Token</strong></li>
+            </ul>
+          </li>
+          <li>
+            <strong class="text-[#E27243]">Manually Add User Stories</strong> – Add stories directly in the project dashboard for seamless integration into your workflow.
+          </li>
+        </ul>
+      </div>
+      
+
+      <!-- Section: How to Use Qualizen Products -->
+      <div>
+        
+
+        <!-- Kill Ambiguity Section -->
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
+          <h3 class="text-2xl font-bold text-[#E27243] mb-4">How to Use Qualizen Products</h3>
+          <h4 class="text-2xl font-semibold text-[#E27243] mb-6 tracking-wide">Kill Ambiguity</h4>
+          <p class="text-lg text-[#4E5A63] mb-6 leading-relaxed">
+            Tailor your platform to fit your specific needs with highly customizable options for identifying and refining ambiguities.
+          </p>
+          <ol class="list-decimal pl-6 space-y-6 text-[#4E5A63] text-lg">
+            <li>
+              <strong class="text-[#E27243]">Add a User Story:</strong> Enter or import a story into the system.
+            </li>
+            <li>
+              <strong class="text-[#E27243]">Identify Ambiguities:</strong> Use the Agentic AI tool to detect ambiguities in your user story.
+            </li>
+            <li>
+              <strong class="text-[#E27243]">Refine Your User Stories:</strong> Select specific ambiguities to refine your stories, generating:
+              <ul class="list-inside list-disc pl-6 mt-4 space-y-3">
+                <li><strong class="font-medium">Acceptance criteria</strong></li>
+                <li><strong class="font-medium">Assumptions</strong></li>
+                <li><strong class="font-medium">Refined user story created by Agentic AI</strong></li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+        
+
+        <!-- Mind Map Generator Section -->
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-3xl mt-12 mx-auto">
+          <h4 class="text-2xl font-semibold text-[#E27243] mb-6 tracking-wide">Mind Map Generator</h4>
+          <p class="text-lg text-[#4E5A63] mb-6 leading-relaxed">
+            Enhance your brainstorming with detailed mind maps, helping you create more structured and impactful strategies.
+          </p>
+          <ol class="list-decimal pl-6 space-y-6 text-[#4E5A63] text-lg">
+            <li>
+              <strong class="text-[#E27243]">Generate Mind Maps:</strong> Create comprehensive visualizations for user stories based on the following criteria:
+              <ul class="list-inside list-disc pl-6 mt-4 space-y-3">
+                <li><strong class="font-medium">Overview:</strong> Core functionality, user actions, expected outcomes, dependencies, alternative flows, and edge cases.</li>
+                <li><strong class="font-medium">Reliability:</strong> System’s ability to function consistently without errors.</li>
+                <li><strong class="font-medium">Availability:</strong> Accessibility and operational readiness.</li>
+                <li><strong class="font-medium">Scalability:</strong> Handling increased load efficiently.</li>
+                <li><strong class="font-medium">Resilience:</strong> Recovery from disruptions or failures.</li>
+                <li><strong class="font-medium">System Components:</strong> Core system elements required for the user story.</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+        
+        
+
+        <!-- Test Scenarios Generator Section -->
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-3xl mt-12 mx-auto">
+          <h4 class="text-2xl font-semibold text-[#E27243] mb-6 tracking-wide">Test Scenarios Generator</h4>
+          <p class="text-lg text-[#4E5A63] mb-6 leading-relaxed">
+            Generate realistic test scenarios to validate ideas and strategies with ease.
+          </p>
+          <ol class="list-decimal pl-6 space-y-4 text-[#4E5A63] text-lg">
+            <li>
+              <strong class="text-[#E27243]">Select a User Story:</strong> Choose a story to test.
+            </li>
+            <li>
+              <strong class="text-[#E27243]">Generate Test Scenarios:</strong> Click "Process" and let Agentic AI create:
+              <ul class="list-inside list-disc pl-6 mt-2 space-y-2">
+                <li><span class="font-medium">Positive and negative test scenarios</span></li>
+                <li><span class="font-medium">Functionality testing</span></li>
+                <li><span class="font-medium">Performance testing</span></li>
+                <li><span class="font-medium">Security testing</span></li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+        
+      </div>
+          <div class="max-w-xl mb-12 md:mx-auto sm:text-center lg:max-w-2xl">
+              <div>
+                  <p class="inline-block px-6 py-2 mb-4 text-xs font-semibold tracking-wider text-white uppercase rounded-full bg-[#E27243] shadow-xl transition duration-300 transform hover:scale-105">
+                      New Arrival
+                  </p>
+              </div>
+              <h2 class="max-w-lg mb-6 text-4xl font-serif font-extrabold leading-tight text-[#344055] sm:text-5xl md:mx-auto">
+                  <span class="relative inline-block">
+                      <svg viewBox="0 0 52 24" fill="currentColor" class="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block">
+                          <defs>
+                              <pattern id="70326c9b-4a0f-429b-9c76-792941e326d5" x="0" y="0" width=".135" height=".30">
+                                  <circle cx="1" cy="1" r=".7"></circle>
+                              </pattern>
+                          </defs>
+                          <rect fill="url(#70326c9b-4a0f-429b-9c76-792941e326d5)" width="52" height="24"></rect>
+                      </svg>
+                      <span class="relative">Qualizen</span>
+                  </span>
+                  FAQs
+              </h2>
+              <p class="text-lg text-[#4E5A63] md:text-xl leading-relaxed max-w-3xl mx-auto">
+                  Explore our latest collection that combines elegance, style, and quality. Transform your space with timeless sophistication and design.
+              </p>
+          </div>
+      </div>
+
+      <!-- Content Section -->
+      <div class="max-w-screen-xl sm:mx-auto mt-10">
+          <div class="grid grid-cols-1 gap-16 row-gap-8 lg:grid-cols-2">
+
+              <!-- Left Column -->
+              <div class="space-y-8">
+                  <!-- Card 1 -->
+                  <div class="p-8 bg-white border-l-8 border-[#E27243] rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                      <p class="mb-4 text-2xl font-semibold text-[#5A8AB7]">What is Qualizen?</p>
+                      <p class="text-[#344055]">
+                          Qualizen is a suite of micro-applications designed for effective project management, offering tools like the Ambiguity Killer, Mind Map Generator, and Test Scenarios Generator.
+                      </p>
+                  </div>
+
+                  <!-- Card 2 -->
+                  <div class="p-8 bg-white border-l-8 border-[#E27243] rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                      <p class="mb-4 text-2xl font-semibold text-[#5A8AB7]">Who can use Qualizen?</p>
+                      <p class="text-[#344055]">
+                          Teams, organizations, and individuals managing complex projects or workflows can benefit from Qualizen’s features.
+                      </p>
+                  </div>
+
+                  <!-- Card 3 -->
+                  <div class="p-8 bg-white border-l-8 border-[#E27243] rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                      <p class="mb-4 text-2xl font-semibold text-[#5A8AB7]">Is Qualizen customizable?</p>
+                      <p class="text-[#344055]">
+                          Yes, you can tailor Qualizen’s tools, such as defining custom roles, user access, and integrations, to fit your organizational needs.
+                      </p>
+                  </div>
+
+                  <!-- Card 4 -->
+                  <div class="p-8 bg-white border-l-8 border-[#E27243] rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                      <p class="mb-4 text-2xl font-semibold text-[#5A8AB7]">How do I register my organization?</p>
+                      <p class="text-[#344055]">
+                          Visit the registration page, fill in your organization details, and click Register to create your organization.
+                      </p>
+                  </div>
+
+                  <!-- Card 5 -->
+                  <div class="p-8 bg-white border-l-8 border-[#E27243] rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                      <p class="mb-4 text-2xl font-semibold text-[#5A8AB7]">What is a portfolio in Qualizen?</p>
+                      <p class="text-[#344055]">
+                          A portfolio is a collection of related projects within your organization, allowing you to organize and manage multiple projects efficiently.
+                      </p>
+                  </div>
+
+                  <!-- Card 6 -->
+                  <div class="p-8 bg-white border-l-8 border-[#E27243] rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                      <p class="mb-4 text-2xl font-semibold text-[#5A8AB7]">How do I create my first project?</p>
+                      <p class="text-[#344055]">
+                          Navigate to your portfolio, go to the Projects tab, and click New Project to set it up with relevant details like name and description.
+                      </p>
+                  </div>
+
+                  <!-- Card 16 -->
+                  <div class="p-8 bg-white border-l-8 border-[#E27243] rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                    <p class="mb-4 text-2xl font-semibold text-[#5A8AB7]">What file formats are mind maps available in?</p>
+                    <p class="text-[#344055]">
+                        Generated mind maps will be available in PNG format.
+                    </p>
+                </div>
+
+                <!-- Card 17 -->
+                <div class="p-8 bg-white border-l-8 border-[#E27243] rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                    <p class="mb-4 text-2xl font-semibold text-[#5A8AB7]">How does the Test Scenarios Generator work?</p>
+                    <p class="text-[#344055]">
+                        It uses AI to create positive and negative test scenarios for functionality, performance, security testing, and more dynamic scenarios.
+                    </p>
+                </div>
+
+                <!-- Card 18 -->
+                <div class="p-8 bg-white border-l-8 border-[#E27243] rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                    <p class="mb-4 text-2xl font-semibold text-[#5A8AB7]">What types of tests does it support?</p>
+                    <p class="text-[#344055]">
+                        It supports functionality, performance, and security testing, among others.
+                    </p>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="space-y-8">
+                  <!-- Card 7 -->
+                  <div class="p-8 bg-white border-l-8 border-[#E27243] rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                      <p class="mb-4 text-2xl font-semibold text-[#5A8AB7]">What roles can I assign to users?</p>
+                      <p class="text-[#344055]">
+                          Roles include Portfolio Admin, Project Admin, and Read-Only User. Each role has distinct permissions tailored to specific responsibilities.
+                      </p>
+                  </div>
+
+                  <!-- Card 8 -->
+                  <div class="p-8 bg-white border-l-8 border-[#E27243] rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                      <p class="mb-4 text-2xl font-semibold text-[#5A8AB7]">Can I import user stories into Qualizen?</p>
+                      <p class="text-[#344055]">
+                          Yes, you can import user stories from Excel files or Jira. For Jira, provide the URL and token for seamless integration.
+                      </p>
+                  </div>
+
+                  <!-- Card 9 -->
+                  <div class="p-8 bg-white border-l-8 border-[#E27243] rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                      <p class="mb-4 text-2xl font-semibold text-[#5A8AB7]">What details are required to manually add a user story?</p>
+                      <p class="text-[#344055]">
+                          Title, description, and priority are mandatory. Additional fields include tags and assignees.
+                      </p>
+                  </div>
+
+                  <!-- Card 10 -->
+                  <div class="p-8 bg-white border-l-8 border-[#E27243] rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                      <p class="mb-4 text-2xl font-semibold text-[#5A8AB7]">Can I edit user stories after they are created?</p>
+                      <p class="text-[#344055]">
+                          Yes, you can edit or delete user stories directly in the project dashboard.
+                      </p>
+                  </div>
+
+                  <!-- Card 11 -->
+                  <div class="p-8 bg-white border-l-8 border-[#E27243] rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                      <p class="mb-4 text-2xl font-semibold text-[#5A8AB7]">What does the Kill Ambiguity do?</p>
+                      <p class="text-[#344055]">
+                          It identifies unclear aspects of user stories and refines them using AI-generated suggestions for acceptance criteria and assumptions.
+                      </p>
+                  </div>
+
+                  <!-- Card 12 -->
+                  <div class="p-8 bg-white border-l-8 border-[#E27243] rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                      <p class="mb-4 text-2xl font-semibold text-[#5A8AB7]">How do I refine a user story?</p>
+                      <p class="text-[#344055]">
+                          Use the AI tool to flag ambiguities, select suggestions, and save the updated story.
+                      </p>
+                  </div>
+
+                  <!-- Card 13 -->
+                  <div class="p-8 bg-white border-l-8 border-[#E27243] rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                      <p class="mb-4 text-2xl font-semibold text-[#5A8AB7]">Does the Kill Ambiguity provide acceptance criteria?</p>
+                      <p class="text-[#344055]">
+                          Yes, it generates detailed acceptance criteria to ensure clarity and completeness in your user stories.
+                      </p>
+                  </div>
+
+                  <!-- Card 14 -->
+                  <div class="p-8 bg-white border-l-8 border-[#E27243] rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                      <p class="mb-4 text-2xl font-semibold text-[#5A8AB7]">What are mind maps used for?</p>
+                      <p class="text-[#344055]">
+                          Mind maps provide a visual representation of user stories, covering aspects like functionality, reliability, and scalability.
+                      </p>
+                  </div>
+
+                  <!-- Card 15 -->
+                  <div class="p-8 bg-white border-l-8 border-[#E27243] rounded-3xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                      <p class="mb-4 text-2xl font-semibold text-[#5A8AB7]">How can I generate Mind Maps for different aspects?</p>
+                      <p class="text-[#344055]">
+                          You can select different tabs like functionality, reliability, and scalability, and click on generate to generate mind maps based on those aspects.
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  </div>
+
+</body>
+</html>

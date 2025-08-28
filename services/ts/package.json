@@ -1,0 +1,32 @@
+{
+  "name": "qualizen-ts",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "rsbuild dev --open",
+    "build": "rsbuild build",
+    "preview": "rsbuild preview"
+  },
+  "dependencies": {
+    "@module-federation/enhanced": "^0.6.3",
+    "autoprefixer": "^10.4.20",
+    "file-saver": "^2.0.5",
+    "jspdf": "^2.5.2",
+    "primeicons": "^7.0.0",
+    "primereact": "^10.8.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-tabs": "^6.0.2",
+    "tailwind-merge": "^2.5.2"
+  },
+  "devDependencies": {
+    "@rsbuild/core": "^1.0.1",
+    "@rsbuild/plugin-react": "^1.0.1",
+    "@types/node": "^22.13.10",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "i": "^0.3.7",
+    "tailwindcss": "^3.4.11",
+    "typescript": "^5.5.2"
+  }
+}

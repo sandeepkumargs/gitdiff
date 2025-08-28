@@ -1,0 +1,11 @@
+/* Avatar hover effect */
+.avatar-container {
+    display: inline-block; /* Makes sure avatar behaves as an inline element */
+  }
+  
+  .avatar-container:hover .p-avatar {
+    transform: scale(1.1); /* Zoom in effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow on hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  }
+  

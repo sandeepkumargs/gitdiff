@@ -1,13 +1,8 @@
-name: Multi-Service Docker Deployment
+name: Detect Service Changes
 
 on:
   push:
-    branches: [fearture]   # fix typo: was 'fearture'
-
-env:
-  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-  DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-  DOCKERHUB_REPOSITORY: ${{ secrets.DOCKERHUB_REPOSITORY }}
+    branches: [fearture]   # change to your branch name
 
 jobs:
   detect-changes:
@@ -34,7 +29,6 @@ jobs:
           TABLE=$(git diff --name-only HEAD^ HEAD | grep -q '^services/table/' && echo true || echo false)
           TS=$(git diff --name-only HEAD^ HEAD | grep -q '^services/ts/' && echo true || echo false)
 
-          echo "auth=$AUTH" >> $GITHUB_OUTPUT
           echo "org=$ORG" >> $GITHUB_OUTPUT
           echo "mm=$MM" >> $GITHUB_OUTPUT
           echo "ac=$AC" >> $GITHUB_OUTPUT
@@ -42,45 +36,12 @@ jobs:
           echo "table=$TABLE" >> $GITHUB_OUTPUT
           echo "ts=$TS" >> $GITHUB_OUTPUT
 
-  build-and-push-org:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.org_changed == 'true'
-    uses: ./.github/workflows/build-push-template.yaml
-    with:
-      service: org
-
-  build-and-push-mm:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.mm_changed == 'true'
-    uses: ./.github/workflows/build-push-template.yaml
-    with:
-      service: mm
-
-  build-and-push-ac:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.ac_changed == 'true'
-    uses: ./.github/workflows/build-push-template.yaml
-    with:
-      service: ac
-
-  build-and-push-onboard:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.onboard_changed == 'true'
-    uses: ./.github/workflows/build-push-template.yaml
-    with:
-      service: onboard
-
-  build-and-push-table:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.table_changed == 'true'
-    uses: ./.github/workflows/build-push-template.yaml
-    with:
-      service: table
-
-  build-and-push-ts:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.ts_changed == 'true'
-    uses: ./.github/workflows/build-push-template.yaml
-    with:
-      service: ts
+      - name: Show results
+        run: |
+          echo "Org changed: ${{ steps.set.outputs.org }}"
+          echo "MM changed: ${{ steps.set.outputs.mm }}"
+          echo "AC changed: ${{ steps.set.outputs.ac }}"
+          echo "Onboard changed: ${{ steps.set.outputs.onboard }}"
+          echo "Table changed: ${{ steps.set.outputs.table }}"
+          echo "TS changed: ${{ steps.set.outputs.ts }}"
 

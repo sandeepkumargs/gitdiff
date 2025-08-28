@@ -2,7 +2,7 @@ name: Multi-Service Docker Deployment
 
 on:
   push:
-    branches: [develop]
+    branches: [fearture]
 
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
